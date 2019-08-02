@@ -27,7 +27,10 @@ public class CalculateChange {
         mapOFCoinDenomination.put("Nickel", 0);
         mapOFCoinDenomination.put("Pennies", 0);
         while ( cents > 0 ) {
-
+            /*
+            Order is important. If we get a coins array instead we have to sort it first
+            in descending order to make this greedy strategy work.
+            */
             if ( cents >= 25 ) {
                 mapOFCoinDenomination.put("Quarters", mapOFCoinDenomination.get("Quarters") + 1 );
                 cents -= 25;
