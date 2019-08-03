@@ -23,7 +23,7 @@ public class CalculateChangeTest{
         expected.add("Nickel 1");
         expected.add("Quarters 3");
         expected.add("Pennies 3");
-        Assert.assertEquals(expected, calculateChange.getMinimumCoins(83));
+        Assert.assertEquals(expected, calculateChange.getMinimumCoinsGreedy(83));
     }
 
     @org.junit.Test
@@ -34,13 +34,21 @@ public class CalculateChangeTest{
         expected.add("Nickel 0");
         expected.add("Quarters 3");
         expected.add("Pennies 0");
-        Assert.assertEquals(expected, calculateChange.getMinimumCoins(75));
+        Assert.assertEquals(expected, calculateChange.getMinimumCoinsGreedy(75));
     }
 
     @org.junit.Test
     public void getMinimumCoinsWithNegativeInput() {
-        Assert.assertNull(null, calculateChange.getMinimumCoins(-83));
+        Assert.assertNull(null, calculateChange.getMinimumCoinsGreedy(-83));
     }
+
+
+    @org.junit.Test
+    public void minCoinsRequiredDPTest() {
+        int coins [] = new int[]{1,5,10,25};
+        Assert.assertEquals(7, calculateChange.minCoinsRequiredDP(coins, coins.length, 83 ));
+    }
+
 
 
 

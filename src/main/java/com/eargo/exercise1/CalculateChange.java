@@ -14,7 +14,7 @@ public class CalculateChange {
      * Assuming we have unlimited number of coins of each denomination
      * Greedy approach to get minimum number of coins
      */
-    public List<String> getMinimumCoins( int cents ) {
+    public List<String> getMinimumCoinsGreedy(int cents ) {
 
         if ( cents < 0 ){
             return null;
@@ -28,7 +28,7 @@ public class CalculateChange {
         mapOFCoinDenomination.put("Pennies", 0);
         while ( cents > 0 ) {
             /*
-            Order is important. If we get a coins array instead we have to sort it first
+            Order is important. If we get a coins array instead we have to sort it first - O(nlogn)
             in descending order to make this greedy strategy work.
             */
             if ( cents >= 25 ) {
@@ -57,6 +57,39 @@ public class CalculateChange {
         }
 
         return result;
+
+    }
+
+    /**
+     * @param coins denominations of coins
+     * @param n number of coins
+     * @param cents
+     * @return minimum coins required to make the value cents
+     * Complexity : Time - O(cents*n) Space - O(cents)
+     */
+    public int minCoinsRequiredDP(int coins[], int n, int cents ) {
+
+
+        // dp[i] stores the minimum number of coins required to make the value i
+        int dp[] = new int[cents + 1];
+
+        dp[0] = 0;
+
+        for (int i = 1; i <= cents; i++)
+            dp[i] = Integer.MAX_VALUE;
+
+        for (int i = 1; i <= cents; i++) {
+            for (int j = 0; j < n; j++) {
+                if (coins[j] <= i) {
+                    int temp = dp[i - coins[j]];
+                    if (temp != Integer.MAX_VALUE
+                            && temp + 1 < dp[i])
+                        dp[i] = temp + 1;
+                }
+            }
+        }
+
+        return dp[cents];
 
     }
 }
