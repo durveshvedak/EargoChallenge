@@ -52,7 +52,7 @@ public class BestBuyAndSell {
                 buy = prices[i];
                 buyIndex = i+1;
             }
-            if ( maxProfit < prices[i] ){
+            if ( maxProfit < prices[i] - buy ){
                 maxProfit = prices[i] - buy;
                 sellIndex = i+1;
             }

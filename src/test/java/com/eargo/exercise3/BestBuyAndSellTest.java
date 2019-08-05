@@ -2,18 +2,15 @@ package com.eargo.exercise3;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.List;
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 public class BestBuyAndSellTest {
 
     private BestBuyAndSell bestBuyAndSell;
 
     @org.junit.Before
-    public void setUp() throws Exception {
+    public void setUp() {
         bestBuyAndSell = new BestBuyAndSell();
     }
 
